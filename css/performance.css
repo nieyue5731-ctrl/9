@@ -1,0 +1,4 @@
+    
+        .low-perf #ambient-particles, .low-perf .vfx-layer { display: none !important; }
+        #tu-perf-stats { font-family: monospace; }
+    
