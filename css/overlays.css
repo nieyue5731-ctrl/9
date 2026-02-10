@@ -1,0 +1,191 @@
+            box-shadow: 0 14px 30px rgba(0, 0, 0, 0.42) !important;
+        }
+
+        .ux-action:active,
+        .inv-btn:active,
+        .craft-btn:active,
+        #craft-action-btn:active {
+            transform: translateY(0px);
+        }
+
+        /* Primary 按钮：柔和渐变强调（更贴近挖掘条的高亮） */
+        .ux-action.primary,
+        .inv-btn.primary,
+        #craft-action-btn.primary {
+            background: linear-gradient(135deg, rgba(108, 92, 231, 0.58), rgba(253, 121, 168, 0.22)) !important;
+            border-color: rgba(162, 155, 254, 0.56) !important;
+        }
+
+        /* Close/小按钮：更像HUD上的磨砂小片 */
+        .ux-close,
+        .inv-close-btn,
+        .close-btn {
+            background: rgba(255, 255, 255, 0.08) !important;
+            border: 1px solid rgba(255, 255, 255, 0.16) !important;
+            color: var(--tu-text) !important;
+            backdrop-filter: blur(12px) saturate(1.2) !important;
+            -webkit-backdrop-filter: blur(12px) saturate(1.2) !important;
+            box-shadow: 0 10px 22px rgba(0, 0, 0, 0.38) !important;
+        }
+
+        .ux-close:hover,
+        .inv-close-btn:hover,
+        .close-btn:hover {
+            border-color: rgba(255, 255, 255, 0.26) !important;
+        }
+
+        /* 表单控件：统一磨砂 */
+        .ux-panel select,
+        .ux-panel input[type="text"],
+        .ux-panel input[type="number"] {
+            background: rgba(255, 255, 255, 0.06) !important;
+            border: 1px solid rgba(255, 255, 255, 0.16) !important;
+            color: var(--tu-text) !important;
+            border-radius: 12px !important;
+            backdrop-filter: blur(12px) !important;
+            -webkit-backdrop-filter: blur(12px) !important;
+        }
+
+        .ux-panel small {
+            color: var(--tu-muted) !important;
+        }
+
+        /* Range：让轨道/滑块更精致 */
+        .ux-panel input[type="range"] {
+            accent-color: rgba(162, 155, 254, 0.95);
+        }
+
+        .ux-panel input[type="range"]::-webkit-slider-runnable-track {
+            height: 8px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.10);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        .ux-panel input[type="range"]::-webkit-slider-thumb {
+            width: 18px;
+            height: 18px;
+            margin-top: -6px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.92);
+            border: 1px solid rgba(0, 0, 0, 0.18);
+        }
+
+        /* 背包格子：微调更接近“玻璃小块” */
+        .inv-slot {
+            background: rgba(255, 255, 255, 0.06) !important;
+            border: 1px solid rgba(255, 255, 255, 0.14) !important;
+            backdrop-filter: blur(10px) !important;
+            -webkit-backdrop-filter: blur(10px) !important;
+        }
+
+        .inv-slot:hover {
+            border-color: rgba(255, 255, 255, 0.22) !important;
+        }
+
+        /* 合成列表格子同理 */
+        .craft-grid .craft-item,
+        .craft-grid button {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            backdrop-filter: blur(var(--glass-blur));
+            -webkit-backdrop-filter: blur(var(--glass-blur));
+        }
+
+        /* Toast 更像 HUD */
+        .toast {
+            background: rgba(15, 18, 40, 0.66) !important;
+            border: 1px solid rgba(255, 255, 255, 0.18) !important;
+            backdrop-filter: blur(14px) saturate(1.2) !important;
+            -webkit-backdrop-filter: blur(14px) saturate(1.2) !important;
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55) !important;
+        }
+
+        
+        html.no-backdrop .top-btn,
+        html.no-backdrop .toast,
+        html.no-backdrop .ux-panel,
+        html.no-backdrop #inventory-panel,
+        html.no-backdrop #crafting-panel,
+        html.no-backdrop #hotbar,
+        html.no-backdrop #minimap,
+        html.no-backdrop #info,
+        html.no-backdrop #mining-bar,
+        html.no-backdrop .stat-bar,
+        html.no-backdrop #inv-held {
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+            background: rgba(15, 18, 40, 0.92) !important;
+            border-color: rgba(255, 255, 255, 0.18) !important;
+        }
+
+        html.no-backdrop .ux-overlay,
+        html.no-backdrop #inventory-overlay,
+        html.no-backdrop #crafting-overlay {
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+        }
+    
+    
+        /* ---------------------------------------------------------
+   Performance UI downgrade (AutoQuality / Low Power)
+   - html.tu-low-power: QualityManager 进入后台或自动降档时启用
+   - html.tu-quality-low: 体验层降档（fps 低）时启用
+   目标：在不影响玩法的前提下，显著减少 GPU/合成开销（backdrop-filter / 大阴影 / 纯装饰动画）
+----------------------------------------------------------*/
+
+        html.tu-low-power {
+            /* 后台/低功耗：尽量“省电优先” */
+            --hud-blur: 0px;
+            --glass-blur: 0px;
+            --tu-glass-blur: 0px;
+            --glow: 0 0 0 rgba(0, 0, 0, 0);
+            --glow-shadow: none;
+            --hud-shadow: 0 10px 24px rgba(0, 0, 0, 0.42), 0 0 0 1px rgba(255, 255, 255, 0.06) inset;
+        }
+
+        html.tu-quality-low {
+            /* 低帧：在保留少量质感的同时降低成本 */
+            --hud-blur: 6px;
+            --glass-blur: 6px;
+            --tu-glass-blur: 8px;
+            --hud-shadow: 0 10px 28px rgba(0, 0, 0, 0.46), 0 0 0 1px rgba(255, 255, 255, 0.06) inset;
+        }
+
+        /* 关闭最吃性能的 backdrop-filter（仅 UI 面板层） */
+        html.tu-low-power .top-btn,
+        html.tu-low-power .toast,
+        html.tu-low-power .ux-panel,
+        html.tu-low-power #inventory-panel,
+        html.tu-low-power #crafting-panel,
+        html.tu-low-power #hotbar,
+        html.tu-low-power #minimap,
+        html.tu-low-power #info,
+        html.tu-low-power #mining-bar,
+        html.tu-low-power .stat-bar,
+        html.tu-low-power #inv-held,
+        html.tu-quality-low .top-btn,
+        html.tu-quality-low .toast,
+        html.tu-quality-low .ux-panel,
+        html.tu-quality-low #inventory-panel,
+        html.tu-quality-low #crafting-panel,
+        html.tu-quality-low #hotbar,
+        html.tu-quality-low #minimap,
+        html.tu-quality-low #info,
+        html.tu-quality-low #mining-bar,
+        html.tu-quality-low .stat-bar,
+        html.tu-quality-low #inv-held {
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+        }
+
+        /* 纯装饰动画：在低功耗/低档下关闭 */
+        html.tu-low-power #health-fill::after,
+        html.tu-low-power #mana-fill::after,
+        html.tu-low-power .slot.active::before,
+        html.tu-low-power #mining-bar .fill,
+        html.tu-low-power #mining-bar .fill::after,
+        html.tu-quality-low #health-fill::after,
+        html.tu-quality-low #mana-fill::after,
+        html.tu-quality-low .slot.active::before,
+        html.tu-quality-low #mining-bar .fill,

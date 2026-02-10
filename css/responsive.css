@@ -1,0 +1,61 @@
+        html.tu-quality-low #mining-bar .fill,
+        html.tu-quality-low #mining-bar .fill::after {
+            animation: none !important;
+        }
+
+        /* 环境 DOM 粒子：低功耗/低档直接关闭（Canvas 已有粒子系统） */
+        html.tu-low-power #ambient-particles,
+        html.tu-quality-low #ambient-particles {
+            display: none !important;
+        }
+
+        /* 图标 drop-shadow：可省一点合成开销 */
+        html.tu-low-power .stat-bar .icon,
+        html.tu-quality-low .stat-bar .icon {
+            filter: none !important;
+        }
+    
+
+    
+        /* ═══════════════════ Consolidated CSS Performance Optimizations ═══════════════════ */
+        
+        /* Containment: reduce layout/paint scope for interactive elements */
+        .action-btn,
+        .top-btn {
+            contain: layout style;
+        }
+        .inv-slot,
+        .craft-item,
+        .toast {
+            contain: layout style paint;
+        }
+        #stats,
+        #hotbar,
+        .action-buttons {
+            contain: layout;
+        }
+
+        /* GPU compositing hints (only for elements that actually animate frequently) */
+        #joystick-thumb,
+        #crosshair {
+            transform: translateZ(0);
+            backface-visibility: hidden;
+        }
+
+        /* Respect user preference for reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* Text rendering optimization */
+        body {
+            text-rendering: optimizeSpeed;
+        }
+    
+
+
